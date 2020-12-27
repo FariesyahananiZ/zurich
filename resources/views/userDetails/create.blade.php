@@ -61,6 +61,9 @@
               <label for="state">State:</label>
               <input type="text" class="form-control" name="state"/>
           </div>    
+          <div class="form-group">
+              <input  hidden type="text" class="form-control" name="user_id"/>
+          </div>   
           <button type="submit" class="btn btn-primary-outline">Save Details </button>
       </form>
   </div>

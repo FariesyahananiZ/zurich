@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use App\User;
 
 class userDetails extends Model
 {
@@ -20,8 +21,11 @@ class userDetails extends Model
      'postcode',
      'city',
      'state',
-
+     'user_id'
 	];
 
-	
+   public function user()
+    {
+        return $this->belongsTo(User::class, 'foreign_key');
+    }
 }

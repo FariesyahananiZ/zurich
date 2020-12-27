@@ -22,12 +22,12 @@ class CreateUserdetailsTable extends Migration
             $table->integer('postcode');
             $table->string('city');
             $table->string('state');
+            $table->string("gender");
             $table->string('birthdate');
             $table->integer('age');
             $table->string('occupation');
-
-            
             $table->timestamps();
+            $table->foreignId('user_id');	
         });
     }
 

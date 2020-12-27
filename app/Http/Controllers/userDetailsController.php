@@ -1,9 +1,11 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\userDetails;
+use App\User;
+
 
 class userDetailsController extends Controller
 {
@@ -19,10 +21,9 @@ class userDetailsController extends Controller
     //}
 
     function index()
-    {
-        $data= userDetails::all();
+    {   $id = Auth::user()->id;
+        $data= userDetails::where("user_id",$id)->first();
          return view("userDetails.viewDetails",compact("data"));
-        return view('view',['userDetails'=>$data]);
     }
 
 
@@ -43,13 +44,13 @@ class userDetailsController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
+
+    {      $id = Auth::user()->id;
        $request->validate([
            'name'=>'required',
            'phoneNum'=>'required',
            'email'=>'required'
        ]);
-
        $userDetails = new userDetails([
            'name'=> $request->get('name'),
            'phoneNum'=> $request->get('phoneNum'),
@@ -62,6 +63,7 @@ class userDetailsController extends Controller
            'postcode' => $request->get('postcode'),
            'city' => $request->get('city'),
            'state' => $request->get('state'),
+           'user_id' => $id,
        ]);
        $userDetails->save();
        return redirect()->route('view.detail')->with('Success', 'Details saved!');
@@ -88,6 +90,9 @@ class userDetailsController extends Controller
     public function edit($id)
     {
         //
+        $userDetail = UserDetails::find($id);
+        return view("userDetails.edit",compact("userDetail"));
+
     }
 
     /**
@@ -100,6 +105,20 @@ class userDetailsController extends Controller
     public function update(Request $request, $id)
     {
         //
+         $userDetail = UserDetails::find($id);
+        $userDetail->name = $request->name;
+        $userDetail->email = $request->email;
+        $userDetail->birthdate = $request->birthdate;
+        $userDetail->age = $request->age;
+        $userDetail->occupation = $request->occupation;
+        $userDetail->address = $request->address;
+        $userDetail->postcode = $request->postcode;
+        $userDetail->city = $request->city;
+        $userDetail->state = $request->state;
+
+        $userDetail->save();
+        return redirect()->route('view.detail')->with('Success', 'Details saved!');
+
     }
 
     /**
@@ -111,5 +130,9 @@ class userDetailsController extends Controller
     public function destroy($id)
     {
         //
+    }
+    public function adminIndex(){
+         $data= User::where("role","user")->with("userDetails")->get();
+        return view("admin.index",compact("data"));
     }
 }

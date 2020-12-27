@@ -36,8 +36,8 @@ Contribution Mode:
     <br><br>
 Plan name :
 <select name="plan">
-<option value= 1> TT201 - TAKAFUL TERM 80 </option>
-<option value= 2> TT201P - TAKAFUL TERM 80 Public Sector</option>
+<option value= "TT201"> TT201 - TAKAFUL TERM 80 </option>
+<option value= "TT201P"> TT201P - TAKAFUL TERM 80 Public Sector</option>
 </select>
 
     <br><br>

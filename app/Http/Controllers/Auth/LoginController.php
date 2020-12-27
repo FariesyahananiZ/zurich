@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
+use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
@@ -66,7 +67,15 @@ class LoginController extends Controller
         $fieldType = filter_var($request->username, FILTER_VALIDATE_EMAIL) ? 'email' : 'username';
         if(auth()->attempt(array($fieldType => $input['username'], 'password' => $input['password'])))
         {
-            return redirect()->route('home');
+            $role = Auth::user()->role;
+            if($role=="user"){
+                return redirect()->route('home');
+
+            }
+            else{
+                return redirect()->route('admin');
+
+            }
         }else{
             return redirect()->route('login')
                 ->with('error','Email-Address And Password Are Wrong.');

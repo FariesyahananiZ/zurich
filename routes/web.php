@@ -24,17 +24,25 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/try', 'TryController@index');
 
 // admin
-Route::view('/admin', 'admin');
+Route::get('/admin', 'userDetailsController@adminIndex')->name("admin");
 
 // user 
 Route::view('/details', 'details');
 Route::post('/result', 'quoteController@show')->name("quote.show");
 Route::get('/quote', 'quoteController@create');
+Route::post('/quote', 'quoteController@saveQuotation');
 
 // user details
-Route:: get('/userDetails', 'userDetailsController@create');
+Route:: get('/userDetails', 'userDetailsController@create')->name("user.detail");
+//edit userDetail
+Route:: get('/userDetails/edit/{id}', 'userDetailsController@edit')->name("userDetail.edit");
+Route:: post('/userDetails/update/{id}', 'userDetailsController@update')->name("userDetail.update");
+
 Route:: post('/insertDetails', 'userDetailsController@store'); //add
 Route:: get('/viewUser', 'userDetailsController@index')->name("view.detail"); //retrieve
+
+
+Route::get('/userDetails/delete/{id}', 'userDetailsController@destroy')->name('userDetail.delete');
 
 /*
 1. Route using Controller 
