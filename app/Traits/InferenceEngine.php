@@ -140,7 +140,7 @@ trait InferenceEngine
 
                                 $PlanDetail = [
                                     "PlanId" => "TT201",
-                                    "PlanName" => "TAKAFUL TERM 80",
+                                    "PlanName" => "TAKAFUsL TERM 80",
                                     "ContTerm" => "20 years",
                                     "PlanNo" => "2",
                                     "BenefitDeath" => "RM150,000 ",
@@ -163,7 +163,7 @@ trait InferenceEngine
 
 
 
-        
+
         return $PlanDetail;
     }
 
