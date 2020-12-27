@@ -42,7 +42,7 @@ Route:: post('/insertDetails', 'userDetailsController@store'); //add
 Route:: get('/viewUser', 'userDetailsController@index')->name("view.detail"); //retrieve
 
 
-Route::get('/userDetails/delete/{id}', 'userDetailsController@destroy')->name('userDetail.delete');
+Route::delete('/userDetails/delete/{id}', 'userDetailsController@destroy')->name('userDetail.delete');
 
 /*
 1. Route using Controller 

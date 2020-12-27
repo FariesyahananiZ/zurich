@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\userDetails;
 use App\User;
+use Illuminate\Support\Facades\Session;
 
 
 class userDetailsController extends Controller
@@ -130,9 +131,15 @@ class userDetailsController extends Controller
     public function destroy($id)
     {
         //
+        userDetails::destroy($id);
+
+         Session::flash('message', 'Delete successfully!');
+         Session::flash('alert-class', 'alert-success');
+         return redirect()->route("admin");
     }
     public function adminIndex(){
-         $data= User::where("role","user")->with("userDetails")->get();
+         $data= userDetails::get();
+    
         return view("admin.index",compact("data"));
     }
 }
