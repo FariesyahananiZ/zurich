@@ -30,16 +30,16 @@ Route::get('/admin', 'userDetailsController@adminIndex')->name("admin");
 Route::view('/details', 'details');
 Route::post('/result', 'quoteController@show')->name("quote.show");
 Route::get('/quote', 'quoteController@create');
-Route::post('/quote', 'quoteController@saveQuotation');
+Route::post('/test', 'quoteController@saveQuotation')->name("quote.store");
 
 // user details
-Route:: get('/userDetails', 'userDetailsController@create')->name("user.detail");
+Route::get('/userDetails', 'userDetailsController@create')->name("user.detail");
 //edit userDetail
-Route:: get('/userDetails/edit/{id}', 'userDetailsController@edit')->name("userDetail.edit");
-Route:: post('/userDetails/update/{id}', 'userDetailsController@update')->name("userDetail.update");
+Route::get('/userDetails/edit/{id}', 'userDetailsController@edit')->name("userDetail.edit");
+Route::post('/userDetails/update/{id}', 'userDetailsController@update')->name("userDetail.update");
 
-Route:: post('/insertDetails', 'userDetailsController@store'); //add
-Route:: get('/viewUser', 'userDetailsController@index')->name("view.detail"); //retrieve
+Route::post('/insertDetails', 'userDetailsController@store'); //add
+Route::get('/viewUser', 'userDetailsController@index')->name("view.detail"); //retrieve
 
 
 Route::delete('/userDetails/delete/{id}', 'userDetailsController@destroy')->name('userDetail.delete');
